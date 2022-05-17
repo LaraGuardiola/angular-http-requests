@@ -1,3 +1,4 @@
+<div [innerHTML]="xss"></div> /<!--xss has an xss attack that is not triggered because it's been purified-->
 <table class="table is-striped">
     <thead>
         <tr>
@@ -10,7 +11,10 @@
         <tr *ngFor="let page of pages">
             <td>{{page.title}}</td>
             <td>{{page.wordcount}}</td>
-            <td>{{page.snippet}}</td>
+            <td [innerHTML]="page.snippet"></td>
         </tr>
     </tbody>
 </table>
+
+<!--innerHTML as a property in angular has an extra step purifying the content in case there is an XSS attack-->
+<!-- https://www.owasp.org for more xss prevention-->
