@@ -10,14 +10,15 @@ import { WikipediaService } from './wikipedia.service';
 })
 export class AppComponent {
 
-  constructor(private wikipedia: WikipediaService) {
+  pages = []
 
-  }
+  constructor(private wikipedia: WikipediaService) {}
 
   //creates a singleton instance of the WikipediaService
 
   onTerm(term: any){
-    const results = this.wikipedia.search(term);
-    console.log(results);
+    this.wikipedia.search(term).subscribe((response: any) => {
+      this.pages = response.query.search
+    })
   }
 }
