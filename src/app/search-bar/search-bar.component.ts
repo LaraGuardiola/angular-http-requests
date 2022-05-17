@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+//importing EventEmitter and Output for allowing comnunication between child to parent components
 
 @Component({
   selector: 'app-search-bar',
@@ -17,6 +18,7 @@ export class SearchBarComponent implements OnInit {
 
   onInput(value: any){
     this.term = value as HTMLElement;
+    console.log(this.term)
   }
 
   onFormSubmit(event: any){ 

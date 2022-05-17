@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { WikipediaService } from './wikipedia.service';
+
+//to use a service first import it
 
 @Component({
   selector: 'app-root',
@@ -6,9 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'requests';
+
+  constructor(private wikipedia: WikipediaService) {
+
+  }
+
+  //creates a singleton instance of the WikipediaService
 
   onTerm(term: any){
-    console.log(term);
+    const results = this.wikipedia.search(term);
+    console.log(results);
   }
 }
