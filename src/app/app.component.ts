@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WikipediaService } from './wikipedia.service';
+import { WikipediaResponse } from './wikipedia.service';
 
 //to use a service first import it
 
@@ -10,15 +11,15 @@ import { WikipediaService } from './wikipedia.service';
 })
 export class AppComponent {
 
-  pages = []
+  pages:any[] = []
 
   constructor(private wikipedia: WikipediaService) {}
 
   //creates a singleton instance of the WikipediaService
 
-  onTerm(term: any){
-    this.wikipedia.search(term).subscribe((response: any) => {
-      this.pages = response.query.search
+  onTerm(term: string){
+    this.wikipedia.search(term).subscribe((pages) => {
+      this.pages = pages
     })
   }
 }
